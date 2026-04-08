@@ -1,0 +1,29 @@
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: #353c44;
+  color: #b5bebb;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+img { display: block; max-width: 100%; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #232930; }
+::-webkit-scrollbar-thumb { background: #7495a144; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #7495a188; }
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(6px); opacity: 0.3; }
+}
+
+::selection { background: #7495a133; color: #fff; }
+

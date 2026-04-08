@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify UI Optimization — Math Formulation Preview</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #353c44;
+      color: #b5bebb;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      padding: 48px 24px 80px;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ── header ── */
+    .project-label {
+      color: #7495a180;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .overview {
+      color: #b5bebb99;
+      font-size: 14px;
+      line-height: 1.75;
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .tag {
+      background: #7495a118;
+      border: 1px solid #7495a130;
+      color: #7495a1;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 50px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── section ── */
+    .section { margin-bottom: 40px; }
+
+    .section-title {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 18px;
+      background: #7495a1;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .preview-note {
+      background: #7495a112;
+      border: 1px solid #7495a130;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 12px;
+      color: #7495a1;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── math section blocks ── */
+    .intro-text {
+      color: #b5bebebf;
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .sub-heading {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 20px 0 12px;
+      letter-spacing: 0.3px;
+    }
+
+    /* definitions grid */
+    .definitions {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .def-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: #2a2f38;
+      border: 1px solid #7495a10a;
+    }
+
+    .def-symbol {
+      font-size: 14px;
+      color: #fff;
+      flex-shrink: 0;
+      min-width: 50px;
+    }
+
+    .def-desc {
+      color: #b5bebb99;
+      font-size: 13px;
+    }
+
+    /* equation block */
+    .equation-block {
+      padding: 18px 22px;
+      border-radius: 10px;
+      background: #2a2f38;
+      border: 1px solid #7495a10a;
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+
+    .equation-label {
+      color: #7495a199;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .equation-block .katex-display {
+      margin: 0;
+    }
+
+    .equation-block .katex {
+      font-size: 1.15em;
+    }
+
+    /* constraints */
+    .constraints {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .constraint-card {
+      padding: 14px 18px;
+      border-radius: 10px;
+      background: #2a2f38;
+      border: 1px solid #7495a10a;
+    }
+
+    .constraint-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .constraint-number {
+      color: #7495a1;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: monospace;
+      flex-shrink: 0;
+      min-width: 18px;
+    }
+
+    .constraint-desc {
+      color: #b5bebebf;
+      font-size: 13px;
+    }
+
+    .constraint-formula {
+      padding-left: 28px;
+      overflow-x: auto;
+    }
+
+    .constraint-formula .katex-display {
+      margin: 4px 0 0;
+    }
+
+    /* divider */
+    .divider {
+      border: none;
+      border-top: 1px solid #7495a112;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="preview-note">
+      ⚡ Preview — this is exactly how the "Mathematical Formulation" section will appear on your portfolio project page
+    </div>
+
+    <p class="project-label">Integer Programming for UI Layout</p>
+    <h1>Spotify UI Optimization</h1>
+    <p class="overview">
+      Developed a mixed-integer optimization model using Python and Gurobi to determine the optimal
+      placement, sizing, and page assignment of UI modules across Spotify's mobile app interface.
+    </p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">Gurobi</span>
+      <span class="tag">Optimization</span>
+      <span class="tag">Tkinter</span>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- MATH SECTION -->
+    <div class="section">
+      <h2 class="section-title">Mathematical Formulation</h2>
+
+      <p class="intro-text">
+        The optimizer reads an Excel workbook with four sheets — user group preference scores,
+        module max sizes, page weights, and allowable percentage sizes — and solves a binary
+        integer program to determine the optimal layout.
+      </p>
+
+      <h3 class="sub-heading">Data &amp; Parameters</h3>
+
+      <div class="definitions">
+        <div class="def-item">
+          <span class="def-symbol">$I$</span>
+          <span class="def-desc">Set of UI modules (e.g. search, favorites, new release)</span>
+        </div>
+        <div class="def-item">
+          <span class="def-symbol">$J$</span>
+          <span class="def-desc">Set of user segments</span>
+        </div>
+        <div class="def-item">
+          <span class="def-symbol">$K$</span>
+          <span class="def-desc">Set of percentage sizes</span>
+        </div>
+        <div class="def-item">
+          <span class="def-symbol">$P$</span>
+          <span class="def-desc">Set of pages</span>
+        </div>
+        <div class="def-item">
+          <span class="def-symbol">$s_{ij}$</span>
+          <span class="def-desc">Preference score of module $i$ for user group $j$</span>
+        </div>
+        <div class="def-item">
+          <span class="def-symbol">$w_p$</span>
+          <span class="def-desc">Weight assigned to page $p$</span>
+        </div>
+        <div class="def-item">
+          <span class="def-symbol">$l_i$</span>
+          <span class="def-desc">Maximum allowed percentage for module $i$</span>
+        </div>
+        <div class="def-item">
+          <span class="def-symbol">$M_{min}$</span>
+          <span class="def-desc">Minimum modules per page</span>
+        </div>
+        <div class="def-item">
+          <span class="def-symbol">$M_{max}$</span>
+          <span class="def-desc">Maximum modules per page</span>
+        </div>
+      </div>
+
+      <h3 class="sub-heading">Decision Variable</h3>
+
+      <div class="equation-block">
+        <p class="equation-label">Binary Variable</p>
+        $$Z_{ikp} = \begin{cases} 1 & \text{if module } i \text{ is assigned size } k \text{ on page } p \\ 0 & \text{otherwise} \end{cases}$$
+      </div>
+
+      <h3 class="sub-heading">Objective</h3>
+
+      <div class="equation-block">
+        <p class="equation-label">Maximize Weighted User Preference</p>
+        $$\text{Maximize} \quad \sum_{i \in I} \sum_{j \in J} \sum_{k \in K} \sum_{p \in P} s_{ij} \cdot w_p \cdot Z_{ikp}$$
+      </div>
+
+      <h3 class="sub-heading">Constraints</h3>
+
+      <div class="constraints">
+        <div class="constraint-card">
+          <div class="constraint-header">
+            <span class="constraint-number">1.</span>
+            <span class="constraint-desc">Each module can appear on at most one page</span>
+          </div>
+          <div class="constraint-formula">
+            $$\sum_{k \in K} \sum_{p \in P} Z_{ikp} \leq 1 \quad \forall \; i \in I$$
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-header">
+            <span class="constraint-number">2.</span>
+            <span class="constraint-desc">Module cannot exceed its maximum allowed size</span>
+          </div>
+          <div class="constraint-formula">
+            $$Z_{ikp} = 0 \quad \text{for all } k > l_i$$
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-header">
+            <span class="constraint-number">3.</span>
+            <span class="constraint-desc">Total sizes on each page must not exceed 100%</span>
+          </div>
+          <div class="constraint-formula">
+            $$\sum_{i \in I} \sum_{k \in K} k \cdot Z_{ikp} \leq 1.0 \quad \forall \; p \in P$$
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-header">
+            <span class="constraint-number">4.</span>
+            <span class="constraint-desc">Recommendation module must be placed on Page 1</span>
+          </div>
+          <div class="constraint-formula">
+            $$\sum_{k \in K} Z_{R,k,1} = 1$$
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-header">
+            <span class="constraint-number">5.</span>
+            <span class="constraint-desc">Min/max number of modules per page</span>
+          </div>
+          <div class="constraint-formula">
+            $$M_{min} \leq \sum_{i \in I} \sum_{k \in K} Z_{ikp} \leq M_{max} \quad \forall \; p \in P$$
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

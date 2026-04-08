@@ -1,0 +1,149 @@
+{
+  "headers": [
+    "Date",
+    "Album",
+    "Artist",
+    "Tags",
+    "Record_Label",
+    "Record_Label_Loc",
+    "Author"
+  ],
+  "rows": [
+    {
+      "Date": "July 20, 2022",
+      "Album": "Belief",
+      "Artist": "Belief",
+      "Tags": "Electronic",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "Los Angeles, California",
+      "Author": "James Gui"
+    },
+    {
+      "Date": "July 19, 2022",
+      "Album": "Hello, Hi",
+      "Artist": "Ty Segall",
+      "Tags": "Rock",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "Los Angeles, California",
+      "Author": "Elle Carroll"
+    },
+    {
+      "Date": "July 18, 2022",
+      "Album": "Ima ایما",
+      "Artist": "Tegh & Adel Poursamadi",
+      "Tags": "Ambient",
+      "Record_Label": "Tegh",
+      "Record_Label_Loc": "Tehran, Iran",
+      "Author": "Will Pritchard"
+    },
+    {
+      "Date": "July 15, 2022",
+      "Album": "Spectral",
+      "Artist": "Madeline Cocolas",
+      "Tags": "Ambient",
+      "Record_Label": "Madeleine Cocolas",
+      "Record_Label_Loc": "Brisbane, Australia",
+      "Author": "Ted Davis"
+    },
+    {
+      "Date": "July 14, 2022",
+      "Album": "Connection",
+      "Artist": "The Maghreban",
+      "Tags": "Electronic",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "London, UK",
+      "Author": "Andy Beta"
+    },
+    {
+      "Date": "July 13, 2022",
+      "Album": "Renaissance",
+      "Artist": "DoomCannon",
+      "Tags": "Jazz",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "London, UK",
+      "Author": "John Morrison"
+    },
+    {
+      "Date": "July 12, 2022",
+      "Album": "Bigger Sprout",
+      "Artist": "Lawn",
+      "Tags": "Rock",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "New Orleans, Louisiana",
+      "Author": "Charlie Zaillian"
+    },
+    {
+      "Date": "July 11, 2022",
+      "Album": "LOGGERHEAD",
+      "Artist": "Wu-Lu",
+      "Tags": "Alternative",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "London, UK",
+      "Author": "Joe Muggs"
+    },
+    {
+      "Date": "July 08, 2022",
+      "Album": "Spirit Exit",
+      "Artist": "Caterina Barbieri",
+      "Tags": "Ambient",
+      "Record_Label": "caterina barbieri",
+      "Record_Label_Loc": "Milan, Italy",
+      "Author": "Vanessa Ague"
+    },
+    {
+      "Date": "July 07, 2022",
+      "Album": "The Real Work",
+      "Artist": "Party Dozen",
+      "Tags": "Rock",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "Sydney, Australia",
+      "Author": "Brad Cohan"
+    },
+    {
+      "Date": "July 06, 2022",
+      "Album": "Beanna",
+      "Artist": "Mejiwahn",
+      "Tags": "Experimental",
+      "Record_Label": "mejiwahn",
+      "Record_Label_Loc": "Oakland, California",
+      "Author": "Tasha Viets-VanLear"
+    },
+    {
+      "Date": "July 05, 2022",
+      "Album": "Human Capital",
+      "Artist": "Bad Breeding",
+      "Tags": "Punk",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "Stevenage, UK",
+      "Author": "Kerry Cardoza"
+    },
+    {
+      "Date": "July 01, 2022",
+      "Album": "Killed By Mock Execution",
+      "Artist": "Mock Execution",
+      "Tags": "Punk",
+      "Record_Label": "LA VIDA ES UN MUS DISCOS",
+      "Record_Label_Loc": "London, UK",
+      "Author": "Kerry Cardoza"
+    },
+    {
+      "Date": "June 30, 2022",
+      "Album": "Páthos",
+      "Artist": "Conjurer",
+      "Tags": "Metal",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "Rugby, UK",
+      "Author": "Colin Williams"
+    },
+    {
+      "Date": "June 28, 2022",
+      "Album": "The Spur",
+      "Artist": "Joan Shelley",
+      "Tags": "Folk",
+      "Record_Label": "Independent Artist",
+      "Record_Label_Loc": "Louisville, Kentucky",
+      "Author": "Peter Margasak"
+    }
+  ],
+  "totalRows": 1456
+}
