@@ -44,7 +44,7 @@ export default function Hero() {
           </p>
         </FadeIn>
         <FadeIn delay={0.6}>
-          <div style={{ display: "flex", gap: 14, justifyContent: "center", marginBottom: 48 }}>
+          <div style={{ display: "flex", gap: 14, justifyContent: "center", marginBottom: 72 }}>
             <Link to="/projects"><Button>View Projects</Button></Link>
             <Link to="/contact"><Button>Get in Touch</Button></Link>
           </div>

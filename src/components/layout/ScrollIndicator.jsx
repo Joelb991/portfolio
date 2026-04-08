@@ -15,7 +15,7 @@ export default function ScrollIndicator({ label = "Scroll to explore" }) {
     <div
       onClick={() => window.scrollTo({ top: window.innerHeight - 60, behavior: "smooth" })}
       style={{
-        position: "absolute", bottom: 36, left: "50%",
+        position: "absolute", bottom: 16, left: "50%",
         transform: "translateX(-50%)",
         display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
         opacity: visible ? 1 : 0, transition: "opacity 0.5s", cursor: "pointer",
