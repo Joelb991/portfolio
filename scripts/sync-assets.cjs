@@ -7,7 +7,8 @@
  * the portfolio's public/projects/ directory.
  *
  * Usage:
- *   node scripts/sync-assets.js
+ *   node scripts/sync-assets.cjs                  # every project
+ *   node scripts/sync-assets.cjs bandcamp-aotd    # just the named slug(s)
  *
  * Configuration:
  *   Edit the PROJECT_MAP below to add new projects.
@@ -147,7 +148,10 @@ function parseCSVLine(line) {
 // ── Main ──
 console.log("\nSyncing project assets...\n");
 
-for (const proj of PROJECT_MAP) {
+// Optional slugs on the command line limit the sync to those projects, so
+// refreshing one never overwrites another project's files.
+const only = process.argv.slice(2);
+for (const proj of PROJECT_MAP.filter((p) => only.length === 0 || only.includes(p.slug))) {
   const srcRoot = path.join(PROJECTS_ROOT, proj.source);
   const destRoot = path.join(PUBLIC_DEST, proj.slug);
 
