@@ -16,11 +16,13 @@ import airbnbBookingPredictions from "./airbnb-booking-predictions/airbnb-bookin
 import nycHighSchoolDashboard from "./nyc-high-school-dashboard/nyc-high-school-dashboard";
 import deltaValuation from "./delta-valuation/delta-valuation";
 import portfolioOptimization from "./portfolio-optimization/portfolio-optimization";
+import bandcampAotd from "./bandcamp-aotd/bandcamp-aotd";
 
 
-export const FEATURED_PROJECT = spotifyUiOptimization;
+export const FEATURED_PROJECT = bandcampAotd;
 
 export const ALL_PROJECTS = [
+  spotifyUiOptimization,
   airbnbBookingPredictions,
   nycHighSchoolDashboard,
   deltaValuation,
@@ -29,6 +31,6 @@ export const ALL_PROJECTS = [
 
 export const FILTER_BUCKETS = {
   "Tools & Technologies": ["Python", "R", "SQL", "Tableau", "Power BI", "Excel"],
-  "Skills & Methods": ["Data Cleaning", "EDA", "Optimization", "Valuation", "A/B Testing","Linear Regression", "Regression Trees"],
+  "Skills & Methods": ["Data Cleaning", "EDA", "Web Scraping", "Optimization", "Valuation", "A/B Testing","Linear Regression", "Regression Trees"],
   "Industry": ["Finance", "Marketing", "Healthcare", "Entertainment","Hospitality", "Education","Airline"],
 };
