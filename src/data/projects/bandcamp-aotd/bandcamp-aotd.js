@@ -43,7 +43,7 @@ export default {
         type: "highlights",
         title: "What I Built",
         items: [
-          "Python ELT pipeline (extract → transform → enrich → load) that is incremental, cached and idempotent, with 81 pytest tests",
+          "Python ELT pipeline (extract → transform → enrich → load) that is incremental, cached and idempotent, with 94 pytest tests",
           "Postgres warehouse on Supabase: a fact table, three dimensions and a pipeline audit trail, with upserts keyed on a SHA-1 content hash",
           "A semantic layer of 8 SQL views using CTEs and window functions, with lift and Shannon entropy computed in SQL",
           "A three-tab Tableau Public dashboard: Coverage, Editorial and Scenes",
