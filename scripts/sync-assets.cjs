@@ -18,6 +18,7 @@
  *     ├── images/     (analysis visualizations)
  *     ├── files/      (PDFs, presentations, reports)
  *     └── data/       (preview JSON for raw data tables)
+ *   src/data/projects/{slug}/code/   (snippets imported with ?raw)
  */
 
 const fs = require("fs");
@@ -26,6 +27,7 @@ const path = require("path");
 // ── Where external project folders live ──
 const PROJECTS_ROOT = path.resolve(__dirname, "../../");
 const PUBLIC_DEST = path.resolve(__dirname, "../public/projects");
+const CODE_DEST = path.resolve(__dirname, "../src/data/projects");
 
 // ── Project mapping ──
 // To add a new project:
@@ -56,10 +58,18 @@ const PROJECT_MAP = [
     files: [{ from: "Airbnb-Presentation.pdf" }],
   },
   {
-    slug: "bandcamp-webscraping",
+    slug: "bandcamp-aotd",
     source: "Bandcamp_Album-of-the-Day",
-    images: ["images/*.png"],
-    dataPreview: { csv: "Bandcamp_Featured_Albums.csv", maxRows: 15 },
+    images: ["assets/screenshots/*.jpg"],
+    dataPreview: {
+      csv: "data/processed/aotd_analytics.csv",
+      maxRows: 15,
+      columns: ["published_date", "artist", "album", "genre_tag", "record_label", "city", "country", "author", "spotify_match_status"],
+    },
+    code: [
+      { from: "db/views.sql" },
+      { from: "src/bandcamp_aotd/transform/identity.py" },
+    ],
   },
   {
     slug: "delta-valuation",
@@ -104,16 +114,17 @@ function globCopy(srcDir, pattern, destDir) {
   files.forEach((f) => copyFile(path.join(dir, f), path.join(destDir, f)));
 }
 
-function csvToPreviewJSON(csvPath, maxRows) {
+function csvToPreviewJSON(csvPath, maxRows, columns) {
   if (!fs.existsSync(csvPath)) return null;
   const raw = fs.readFileSync(csvPath, "utf8");
   const lines = raw.split("\n").filter((l) => l.trim());
-  const headers = parseCSVLine(lines[0]);
+  const allHeaders = parseCSVLine(lines[0]);
+  const headers = columns || allHeaders;
   const rows = [];
   for (let i = 1; i < Math.min(lines.length, maxRows + 1); i++) {
     const vals = parseCSVLine(lines[i]);
     const row = {};
-    headers.forEach((h, j) => { row[h] = vals[j] || ""; });
+    headers.forEach((h) => { row[h] = vals[allHeaders.indexOf(h)] || ""; });
     rows.push(row);
   }
   return { headers, rows, totalRows: lines.length - 1 };
@@ -173,13 +184,20 @@ for (const proj of PROJECT_MAP) {
     ensureDir(dataDest);
     for (const dp of previews) {
       const csvPath = path.join(srcRoot, dp.csv);
-      const preview = csvToPreviewJSON(csvPath, dp.maxRows || 15);
+      const preview = csvToPreviewJSON(csvPath, dp.maxRows || 15, dp.columns);
       if (preview) {
         const outName = dp.outputName || "preview.json";
         fs.writeFileSync(path.join(dataDest, outName), JSON.stringify(preview, null, 2));
         console.log(`  DATA: ${outName} (${preview.headers.length} cols, ${preview.rows.length} rows)`);
       }
     }
+  }
+
+  // Code snippets, imported by the project file with ?raw
+  if (proj.code) {
+    const codeDest = path.join(CODE_DEST, proj.slug, "code");
+    ensureDir(codeDest);
+    proj.code.forEach((f) => copyFile(path.join(srcRoot, f.from), path.join(codeDest, f.to || path.basename(f.from))));
   }
 
   console.log("");

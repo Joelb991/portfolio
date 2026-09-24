@@ -1,0 +1,181 @@
+{
+  "headers": [
+    "published_date",
+    "artist",
+    "album",
+    "genre_tag",
+    "record_label",
+    "city",
+    "country",
+    "author",
+    "spotify_match_status"
+  ],
+  "rows": [
+    {
+      "published_date": "2011-10-28",
+      "artist": "SNOWMINE",
+      "album": "Laminate Pet Animal",
+      "genre_tag": "Alternative",
+      "record_label": "Independent Artist",
+      "city": "New York",
+      "country": "United States",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2011-11-06",
+      "artist": "Bryan John Appleby",
+      "album": "Fire on the Vine",
+      "genre_tag": "Pop",
+      "record_label": "Independent Artist",
+      "city": "Seattle",
+      "country": "United States",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2011-11-14",
+      "artist": "Ott",
+      "album": "Mir",
+      "genre_tag": "World",
+      "record_label": "Independent Artist",
+      "city": "",
+      "country": "",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2011-11-21",
+      "artist": "Gargleblast Records Bandcamp",
+      "album": "The Other Half of Everything",
+      "genre_tag": "Folk",
+      "record_label": "Independent Artist",
+      "city": "Hamilton",
+      "country": "United Kingdom",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "no_match"
+    },
+    {
+      "published_date": "2011-11-27",
+      "artist": "Philémon Cimon",
+      "album": "Les Sessions Cubaines",
+      "genre_tag": "World",
+      "record_label": "Independent Artist",
+      "city": "Montréal",
+      "country": "Canada",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2011-12-05",
+      "artist": "Kwam MC",
+      "album": "The Surgery EP",
+      "genre_tag": "Hip-Hop/Rap",
+      "record_label": "Independent Artist",
+      "city": "London",
+      "country": "United Kingdom",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "no_match"
+    },
+    {
+      "published_date": "2011-12-12",
+      "artist": "Zubatto Syndicate",
+      "album": "Zubatto Syndicate",
+      "genre_tag": "World",
+      "record_label": "Independent Artist",
+      "city": "Seattle",
+      "country": "United States",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2011-12-19",
+      "artist": "Gabriel Kahane",
+      "album": "Where are the Arms",
+      "genre_tag": "Classical",
+      "record_label": "Independent Artist",
+      "city": "Portland",
+      "country": "United States",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2011-12-26",
+      "artist": "J-LIVE",
+      "album": "S.P.T.A. Said Person of That Ability",
+      "genre_tag": "Hip-Hop/Rap",
+      "record_label": "Independent Artist",
+      "city": "New York",
+      "country": "United States",
+      "author": "Andrew Dubber",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2016-06-13",
+      "artist": "Mitski",
+      "album": "Puberty 2",
+      "genre_tag": "Alternative",
+      "record_label": "Independent Artist",
+      "city": "New York",
+      "country": "United States",
+      "author": "Summer Kim Lee",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2016-06-14",
+      "artist": "Bert Jansch",
+      "album": "From the Outside",
+      "genre_tag": "",
+      "record_label": "Independent Artist",
+      "city": "London",
+      "country": "United Kingdom",
+      "author": "Amanda Wicks",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2016-06-15",
+      "artist": "Mala",
+      "album": "Mirrors",
+      "genre_tag": "",
+      "record_label": "Independent Artist",
+      "city": "London",
+      "country": "United Kingdom",
+      "author": "Louis Pattison",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2016-06-16",
+      "artist": "Kali Phoenix",
+      "album": "Voices",
+      "genre_tag": "",
+      "record_label": "Independent Artist",
+      "city": "Glasgow",
+      "country": "United Kingdom",
+      "author": "Nick Williams",
+      "spotify_match_status": "matched"
+    },
+    {
+      "published_date": "2016-06-17",
+      "artist": "Various Artists",
+      "album": "City Beautiful: A Compilation for Pulse",
+      "genre_tag": "",
+      "record_label": "Pulse Compilation",
+      "city": "Orlando",
+      "country": "United States",
+      "author": "J. Edward Keyes",
+      "spotify_match_status": "no_match"
+    },
+    {
+      "published_date": "2016-06-20",
+      "artist": "Ben Lukas Boysen",
+      "album": "Spells",
+      "genre_tag": "",
+      "record_label": "Independent Artist",
+      "city": "Berlin",
+      "country": "Germany",
+      "author": "Andy Battaglia",
+      "spotify_match_status": "matched"
+    }
+  ],
+  "totalRows": 2287
+}

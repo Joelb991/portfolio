@@ -28,17 +28,26 @@ const R_KW = new Set([
   "hist","plot","legend","dev","data.frame",
 ]);
 
+// Matched case-insensitively, since SQL keywords are.
+const SQL_KW = new Set([
+  "SELECT","FROM","WHERE","GROUP","BY","ORDER","HAVING","JOIN","LEFT","INNER","ON","AS",
+  "WITH","AND","OR","NOT","NULL","IS","IN","DISTINCT","OVER","PARTITION","CREATE","REPLACE",
+  "VIEW","TABLE","LIMIT","DESC","ASC","CASE","WHEN","THEN","ELSE","END","FILTER","SET","TO",
+  "INSERT","INTO","CONFLICT","DO","UPDATE","IF","EXISTS","PRIMARY","KEY","REFERENCES",
+  "UNIQUE","INDEX","WITHIN","TRUE","FALSE","BETWEEN","UNION","INTERSECT","GRANT","USING",
+]);
+
 /**
  * Tokenizes a single line of code into spans.
  * Returns an array of { text, color } objects.
  * This avoids dangerouslySetInnerHTML entirely.
  */
 function tokenizeLine(line, language) {
-  const keywords = language === "r" ? R_KW : PY_KW;
+  const isSql = language === "sql";
+  const keywords = language === "r" ? R_KW : isSql ? SQL_KW : PY_KW;
   const tokens = [];
-  let i = 0;
 
-  // Find comment start (respecting strings)
+  // Find comment start (respecting strings): "--" in SQL, "#" elsewhere
   let commentStart = -1;
   {
     let inStr = false, strCh = null;
@@ -47,7 +56,7 @@ function tokenizeLine(line, language) {
         if (line[j] === strCh && line[j - 1] !== "\\") inStr = false;
       } else {
         if (line[j] === '"' || line[j] === "'") { inStr = true; strCh = line[j]; }
-        else if (line[j] === "#") { commentStart = j; break; }
+        else if (isSql ? line.startsWith("--", j) : line[j] === "#") { commentStart = j; break; }
       }
     }
   }
@@ -101,7 +110,7 @@ function tokenizeLine(line, language) {
       while (lookAhead < codePart.length && codePart[lookAhead] === " ") lookAhead++;
       const isFunc = lookAhead < codePart.length && codePart[lookAhead] === "(";
 
-      if (keywords.has(word)) {
+      if (keywords.has(isSql ? word.toUpperCase() : word)) {
         tokens.push({ text: word, color: COLORS.keyword });
       } else if (isFunc) {
         tokens.push({ text: word, color: COLORS.func });
