@@ -2,12 +2,13 @@
 /*──────────────────────────────────────────────────────────────────────────────
   PROJECTS INDEX
   ─────────────────────────────────────────────────────────────────────────────
-  Each project lives in its own file in this folder.
-  Code snippets are stored as raw files in  public/projects/{slug}/code/
+  Each project lives in its own folder here: {slug}/{slug}.js, plus code/ for
+  snippets imported with ?raw. Images, files and data previews live in
+  public/projects/{slug}/.
 
   To add a new project:
-    1. Create folder  public/projects/{your-slug}/  (with images/, files/, data/, code/ as needed)
-    2. Create a new file  src/data/projects/{your-slug}.js  (copy any existing one as a template)
+    1. Map its assets in scripts/sync-assets.cjs, then run  npm run sync -- {slug}
+    2. Create  src/data/projects/{slug}/{slug}.js  (copy any existing one as a template)
     3. Import and add it to ALL_PROJECTS below — it auto-routes to /projects/{slug}
 ──────────────────────────────────────────────────────────────────────────────*/
 
